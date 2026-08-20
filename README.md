@@ -15,13 +15,13 @@ Alles steckt in einer einzigen Datei (`index.html`) – Three.js ist direkt eing
 ## Features
 
 - **Echtes 3D** (Three.js): nächtliches Klassenzimmer mit Mondlicht, flackernder Lampe, Nebel und umgekippten Bänken; die Zombie-Position hängt direkt am Antwort-Timer – Balken leer = Zombie am Pult
-- **3 eingebaute Sprachen** (Englisch, Französisch, Spanisch) mit Starter-Vokabeln
-- **Abfragerichtung wählbar:** Deutsch → Fremdsprache, Fremdsprache → Deutsch oder gemischt
+- **3 eingebaute Sprachen** (Englisch, Französisch, Spanisch) mit **Sprachniveaus A1, A2, B1, B2 und C1** – jedes Niveau mit eigenem Vokabelpaket und eigenen Rekorden
+- **4 Modi:** 📝 Abschreiben (Vokabel + Bedeutung stehen da – schnell abtippen, zum ersten Lernen), Deutsch → Fremdsprache, Fremdsprache → Deutsch oder gemischt
 - **Schwierigkeitsgrade:** Leicht (mehr Zeit), Normal, Schwer (+30 % Punkte) – eigene Rekorde je Stufe
 - **🎓 Trainingsmodus:** keine Leben verlierbar, viel Zeit – zum entspannten Üben (halbe XP, kein Rekord)
 - **Schlaue Wiederholung:** verfehlte Vokabeln kommen automatisch öfter dran („Angstgegner“)
 - **XP & Klassenstufen:** von Klasse 1 bis „Klasse 13 – ABI-BOSS“, plus 🔥 Tage-Serie
-- **📊 Statistik:** Spiele, Trefferquote, besiegte Zombies, meistverfehlte Vokabeln
+- **📊 Statistik:** Spiele, Trefferquote, besiegte Zombies, beste Welle, Spielzeit, Gelernt-Zähler (3× richtig), meistverfehlte Vokabeln
 - **Faire Antwortprüfung:** Groß-/Kleinschreibung egal, Artikel optional (*dog* = *the dog*),
   mehrere Lösungen per `/` (*laufen/rennen*), Akzente standardmäßig tolerant (*é* = *e*, umschaltbar)
 - **Eigene Vokabellisten:**
