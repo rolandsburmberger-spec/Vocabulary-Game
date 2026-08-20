@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Vokabel-Monster 3D – Zombie-Lehrer greifen an!</title>
 <meta name="description" content="3D-Vokabeltrainer: Zombie-Lehrer wanken durchs nächtliche Klassenzimmer – tippe die Vokabel, bevor sie dein Pult erreichen. Englisch, Französisch, Spanisch oder eigene Listen (auch per Foto-Scan).">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%9F%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='6' width='24' height='22' rx='5' fill='%2386b25c'/%3E%3Crect x='2' y='2' width='28' height='7' rx='3' fill='%23131519'/%3E%3Ccircle cx='11' cy='16' r='3.4' fill='%23e8e6da'/%3E%3Ccircle cx='11.8' cy='16.6' r='1.4' fill='%23131519'/%3E%3Ccircle cx='21' cy='16' r='3.8' fill='%23d6ff4a'/%3E%3Ccircle cx='21' cy='16' r='1.6' fill='%23131519'/%3E%3Crect x='10' y='23' width='12' height='3.4' rx='1.7' fill='%23131519'/%3E%3Crect x='12' y='23' width='2' height='3.4' fill='%23e8e2c8'/%3E%3Crect x='17' y='23' width='2' height='3.4' fill='%23e8e2c8'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Luckiest+Guy&family=Nunito:ital,wght@0,400;0,700;0,800;0,900;1,700&family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -440,6 +440,69 @@ select.txt{appearance:none;flex:0 1 auto}
 .shake{animation:screenShake .4s}
 @keyframes screenShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-8px,4px)}40%{transform:translate(7px,-5px)}60%{transform:translate(-5px,3px)}80%{transform:translate(4px,-2px)}}
 
+/* ---------- Selbstgezeichnete Icons ---------- */
+.ic{display:inline-flex;align-items:center;justify-content:center;line-height:0;flex:0 0 auto}
+.ic svg{width:1.25em;height:1.25em;display:block}
+.ic svg.flagimg{width:1.7em;height:1.15em;border-radius:3px;border:1.5px solid var(--ink)}
+.btn .ic svg{width:1.15em;height:1.15em}
+.choice .flag{display:flex;align-items:center;justify-content:center;gap:6px;min-height:2.2rem}
+.choice .flag .ic svg{width:2.2em;height:2.2em}
+.choice .flag .ic svg.flagimg{width:2.6em;height:1.8em;border-radius:4px;border:2px solid var(--ink);box-shadow:0 2px 0 rgba(0,0,0,.4)}
+.lc-flag .ic svg.flagimg{width:2.2em;height:1.5em;border-radius:4px;border:2px solid var(--ink)}
+.hearts .ic svg{width:1.5em;height:1.5em;filter:drop-shadow(0 2px 0 rgba(0,0,0,.55))}
+.hearts .h.lost svg{filter:grayscale(1) brightness(.45)}
+.iconbtn .ic svg{width:1.3em;height:1.3em}
+.levelbar .ic svg{width:1.1em;height:1.1em;vertical-align:-3px}
+
+/* ---------- Login / Profile ---------- */
+#screen-login{background:linear-gradient(180deg, rgba(5,8,14,.6), rgba(5,8,14,.85))}
+#screen-login .scroll{display:flex;flex-direction:column;align-items:center;gap:10px}
+.login-title{
+  font-family:var(--font-scary);font-size:clamp(2.2rem,8vw,3.6rem);color:var(--zomb);
+  text-shadow:0 0 18px rgba(141,252,94,.5), 0 4px 0 #06230a, 0 7px 0 rgba(0,0,0,.6);
+  margin-top:clamp(10px,4vh,40px);transform:rotate(-1.5deg);
+}
+.login-sub{font-family:var(--font-chalk);font-size:1.35rem;color:var(--chalk-dim);margin-bottom:10px}
+.profile-grid{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;max-width:760px}
+.pcard{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
+  width:132px;padding:16px 10px 12px;border-radius:20px;
+  background:var(--panel);border:3px solid var(--panel-line);
+  color:var(--chalk);transition:transform .1s, border-color .15s, box-shadow .15s;
+}
+.pcard:hover{transform:translateY(-3px);border-color:var(--zomb);box-shadow:0 0 18px rgba(141,252,94,.25)}
+.pcard.last{border-color:rgba(141,252,94,.55)}
+.pcard .pava{width:64px;height:64px}
+.pcard .pava svg{width:100%;height:100%}
+.pcard .pname{font-weight:900;font-size:1rem;max-width:112px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pcard .pmeta{font-size:.68rem;font-weight:800;color:var(--chalk-dim)}
+.pcard .plock{position:absolute;top:8px;left:8px;opacity:.8}
+.pcard .plock svg{width:14px;height:14px}
+.pcard .pdel{
+  position:absolute;top:-9px;right:-9px;width:26px;height:26px;border-radius:50%;
+  background:var(--blood);color:#fff;border:2px solid var(--ink);font-weight:900;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 2px 0 rgba(0,0,0,.5);
+}
+.pcard.newp{border-style:dashed;justify-content:center;min-height:140px}
+.pcard.newp .plus{font-family:var(--font-display);font-size:2rem;color:var(--zomb);line-height:1}
+.login-note{font-size:.75rem;color:rgba(241,239,226,.45);font-weight:700;max-width:420px;text-align:center;margin-top:14px}
+.ava-pick{display:flex;gap:10px;justify-content:center;margin:10px 0}
+.ava-pick button{
+  width:58px;height:58px;border-radius:16px;border:3px solid rgba(241,239,226,.2);
+  background:rgba(0,0,0,.3);padding:6px;transition:border-color .15s, transform .1s;
+}
+.ava-pick button svg{width:100%;height:100%}
+.ava-pick button.sel{border-color:var(--zomb);box-shadow:0 0 12px rgba(141,252,94,.3);transform:scale(1.07)}
+.profile-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,0,0,.4);border:2px solid var(--panel-line);border-radius:99px;
+  padding:4px 12px 4px 5px;font-weight:900;font-size:.9rem;color:var(--chalk);
+}
+.profile-chip .pava{width:26px;height:26px}
+.profile-chip .pava svg{width:100%;height:100%}
+.profile-chip button{font-weight:900;font-size:.72rem;color:var(--zomb);text-decoration:underline;margin-left:4px}
+#pin-error{display:none;color:var(--blood);font-weight:900;font-size:.9rem;margin-top:8px}
+
 /* Kompakt-Layout, wenn die Bildschirmtastatur offen ist (body.kb) */
 body.kb .hud{padding:4px 10px 2px}
 body.kb .hearts{font-size:1.05rem}
@@ -471,13 +534,24 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <div id="dmg"></div>
 <div id="webgl-fail"><div>😵 Dein Browser kann leider kein WebGL (3D).<br>Probier einen aktuellen Chrome, Firefox oder Safari!</div></div>
 
+<!-- ============ LOGIN / PROFILE ============ -->
+<div class="screen active" id="screen-login">
+  <div class="scroll">
+    <h1 class="login-title">Wer spielt heute?</h1>
+    <div class="login-sub">Wähle dein Profil – oder leg ein neues an.</div>
+    <div class="profile-grid" id="profile-grid"></div>
+    <div class="login-note">Profile werden nur auf diesem Gerät gespeichert (im Browser). Jedes Profil hat eigene XP, Rekorde, Listen und Statistiken.</div>
+  </div>
+</div>
+
 <!-- ============ START ============ -->
-<div class="screen active" id="screen-start">
+<div class="screen" id="screen-start">
   <div class="scroll">
     <div class="title-wrap">
       <h1 class="game-title">VOKABEL<span class="vs">GEGEN DIE</span><span class="mon">ZOMBIE-LEHRER</span></h1>
-      <div class="subtitle">Sie kommen näher … tippe die Vokabel, bevor sie dein Pult erreichen! 🧟</div>
+      <div class="subtitle">Sie kommen näher … tippe die Vokabel, bevor sie dein Pult erreichen!</div>
       <div class="levelbar">
+        <span class="profile-chip" id="profile-chip"></span>
         <span class="lvl" id="lvl-label">Klasse 1</span>
         <span class="xpbar"><i id="xp-fill" style="width:0%"></i></span>
         <span id="xp-label">0 XP</span>
@@ -494,38 +568,38 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
     <div class="panel">
       <h2>2. Modus <span class="tag">Abfrage</span></h2>
       <div class="dir-row" id="dir-grid">
-        <button class="choice" data-dir="copy"><span class="flag">📝</span><span class="name">Abschreiben<br><small>Vokabel steht da – schnell abtippen &amp; einprägen (zum ersten Lernen)</small></span></button>
-        <button class="choice" data-dir="de2fl"><span class="flag">🇩🇪➜</span><span class="name">Deutsch ➜ Fremdsprache</span></button>
-        <button class="choice" data-dir="fl2de"><span class="flag">➜🇩🇪</span><span class="name">Fremdsprache ➜ Deutsch</span></button>
-        <button class="choice sel" data-dir="mix"><span class="flag">🔀</span><span class="name">Gemischt</span></button>
+        <button class="choice" data-dir="copy"><span class="flag"><span data-ico="pencil"></span></span><span class="name">Abschreiben<br><small>Vokabel steht da – schnell abtippen &amp; einprägen (zum ersten Lernen)</small></span></button>
+        <button class="choice" data-dir="de2fl"><span class="flag"><span data-ico="de"></span><span data-ico="arrowR"></span></span><span class="name">Deutsch ➜ Fremdsprache</span></button>
+        <button class="choice" data-dir="fl2de"><span class="flag"><span data-ico="arrowR"></span><span data-ico="de"></span></span><span class="name">Fremdsprache ➜ Deutsch</span></button>
+        <button class="choice sel" data-dir="mix"><span class="flag"><span data-ico="shuffle"></span></span><span class="name">Gemischt</span></button>
       </div>
     </div>
 
     <div class="panel">
       <h2>3. Wie mutig bist du? <span class="tag">Schwierigkeit</span></h2>
       <div class="dir-row" id="diff-grid">
-        <button class="choice" data-diff="easy"><span class="flag">🐌</span><span class="name">Leicht<br><small>+35 % Zeit, −20 % Punkte</small></span></button>
-        <button class="choice sel" data-diff="normal"><span class="flag">🧟</span><span class="name">Normal</span></button>
-        <button class="choice" data-diff="hard"><span class="flag">💀</span><span class="name">Schwer<br><small>−30 % Zeit, +30 % Punkte</small></span></button>
+        <button class="choice" data-diff="easy"><span class="flag"><span data-ico="snail"></span></span><span class="name">Leicht<br><small>+35 % Zeit, −20 % Punkte</small></span></button>
+        <button class="choice sel" data-diff="normal"><span class="flag"><span data-ico="zombieHead"></span></span><span class="name">Normal</span></button>
+        <button class="choice" data-diff="hard"><span class="flag"><span data-ico="skull"></span></span><span class="name">Schwer<br><small>−30 % Zeit, +30 % Punkte</small></span></button>
       </div>
       <div class="settings-row" style="margin-top:12px">
-        <label class="toggle"><input type="checkbox" id="set-practice"><span class="tk"></span>🎓 Trainingsmodus (keine Leben, viel Zeit, ohne Rekord, halbe XP)</label>
+        <label class="toggle"><input type="checkbox" id="set-practice"><span class="tk"></span><span data-ico="grad"></span> Trainingsmodus (keine Leben, viel Zeit, ohne Rekord, halbe XP)</label>
       </div>
     </div>
 
     <div class="startrow">
-      <button class="btn big red" id="btn-start">⚔️ Angriff starten!</button>
-      <button class="btn ghost" id="btn-lists">📚 Meine Listen</button>
-      <button class="btn ghost" id="btn-stats">📊 Statistik</button>
+      <button class="btn big red" id="btn-start"><span data-ico="swords"></span> Angriff starten!</button>
+      <button class="btn ghost" id="btn-lists"><span data-ico="books"></span> Meine Listen</button>
+      <button class="btn ghost" id="btn-stats"><span data-ico="chart"></span> Statistik</button>
     </div>
     <div class="hi-line" id="hi-line"></div>
 
     <div class="settings-row">
-      <label class="toggle"><input type="checkbox" id="set-sound" checked><span class="tk"></span>🔊 Sound</label>
+      <label class="toggle"><input type="checkbox" id="set-sound" checked><span class="tk"></span><span data-ico="speaker"></span> Sound</label>
       <label class="toggle"><input type="checkbox" id="set-accents"><span class="tk"></span>Akzente streng (é ≠ e)</label>
     </div>
 
-    <div class="footnote">Läuft auf Handy &amp; PC · Verfehlte Vokabeln kommen automatisch öfter dran · Eigene Vokabeln per Tastatur, Text oder 📸 Foto vom Buch</div>
+    <div class="footnote">Läuft auf Handy &amp; PC · Verfehlte Vokabeln kommen automatisch öfter dran · Eigene Vokabeln per Tastatur, Text oder Foto vom Buch</div>
   </div>
 </div>
 
@@ -539,7 +613,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
     <div class="wavebadge" id="wavebadge">Welle 1</div>
     <div class="hud-right">
       <div class="scorebox"><small>PUNKTE</small><span id="score">0</span></div>
-      <button class="iconbtn pausebtn" id="btn-pause" title="Pause">⏸</button>
+      <button class="iconbtn pausebtn" id="btn-pause" title="Pause"><span data-ico="pause"></span></button>
     </div>
   </div>
 
@@ -556,7 +630,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
     </div>
     <div class="answer-row">
       <input id="answer" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="send" placeholder="Antwort tippen + Enter …">
-      <button class="btn small" id="btn-hint" title="Tipp (kostet Punkte)">💡</button>
+      <button class="btn small" id="btn-hint" title="Tipp (kostet Punkte)"><span data-ico="bulb"></span></button>
       <button class="btn small red" id="btn-fire">Feuer!</button>
     </div>
   </div>
@@ -567,7 +641,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
   <div class="scroll">
     <div class="over-title" id="over-title">ERWISCHT!</div>
     <div class="over-quote" id="over-quote"></div>
-    <div class="newhi" id="over-newhi" style="display:none">🏆 Neuer Rekord!</div>
+    <div class="newhi" id="over-newhi" style="display:none"><span data-ico="trophy"></span> Neuer Rekord!</div>
     <div class="statgrid">
       <div class="stat"><b id="ov-score">0</b><span>Punkte</span></div>
       <div class="stat"><b id="ov-wave">1</b><span>Welle</span></div>
@@ -577,8 +651,8 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
     <div class="xpgain" id="ov-xp" style="display:none"></div>
     <div id="over-vocab"></div>
     <div class="startrow">
-      <button class="btn big" id="btn-again">🔁 Nochmal!</button>
-      <button class="btn ghost" id="btn-home">🏠 Zum Start</button>
+      <button class="btn big" id="btn-again"><span data-ico="restart"></span> Nochmal!</button>
+      <button class="btn ghost" id="btn-home"><span data-ico="home"></span> Zum Start</button>
     </div>
   </div>
 </div>
@@ -587,8 +661,8 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <div class="screen" id="screen-lists">
   <div class="topbar">
     <button class="iconbtn" id="btn-lists-back">←</button>
-    <h1>📚 Meine Vokabellisten</h1>
-    <button class="btn small mint" id="btn-newlist">+ Neue Liste</button>
+    <h1><span data-ico="books"></span> Meine Vokabellisten</h1>
+    <button class="btn small mint" id="btn-newlist"><span data-ico="plus"></span> Neue Liste</button>
   </div>
   <div class="scroll" id="lists-container"></div>
 </div>
@@ -597,7 +671,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <div class="screen" id="screen-editor">
   <div class="topbar">
     <button class="iconbtn" id="btn-editor-back">←</button>
-    <h1>✏️ Liste bearbeiten</h1>
+    <h1><span data-ico="pencil"></span> Liste bearbeiten</h1>
     <span class="count-pill" id="ed-count">0 Vokabeln</span>
   </div>
   <div class="scroll">
@@ -606,9 +680,9 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
       <select class="txt" id="ed-lang"></select>
     </div>
     <div class="ed-tools">
-      <button class="btn small" id="btn-scan">📸 Foto vom Buch scannen</button>
-      <button class="btn small" id="btn-paste">📋 Text einfügen</button>
-      <button class="btn small moon" id="btn-export">📤 Exportieren</button>
+      <button class="btn small" id="btn-scan"><span data-ico="camera"></span> Foto vom Buch scannen</button>
+      <button class="btn small" id="btn-paste"><span data-ico="clipboard"></span> Text einfügen</button>
+      <button class="btn small moon" id="btn-export"><span data-ico="exportUp"></span> Exportieren</button>
     </div>
     <div class="pair-add">
       <input class="txt" id="add-fl" placeholder="Fremdsprache (z. B. the dog)">
@@ -622,10 +696,10 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <!-- ============ SCAN-MODAL ============ -->
 <div class="modal" id="scanmodal">
   <div class="sheet">
-    <h2>📸 Vokabeln aus Foto einlesen</h2>
+    <h2><span data-ico="camera"></span> Vokabeln aus Foto einlesen</h2>
     <p>Fotografiere die Vokabelseite möglichst gerade und hell. Die Texterkennung läuft direkt hier im Browser – nichts wird hochgeladen. Danach kannst du alles kontrollieren und korrigieren.</p>
     <div class="scan-drop" id="scan-drop">
-      <span class="bigico">📷</span>
+      <span class="bigico" data-ico="photo"></span>
       Foto aufnehmen oder Bild auswählen<br>
       <small style="font-weight:700;color:rgba(241,239,226,.45)">(oder Bild hierher ziehen)</small>
     </div>
@@ -645,7 +719,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <!-- ============ TEXT-IMPORT-MODAL ============ -->
 <div class="modal" id="pastemodal">
   <div class="sheet">
-    <h2>📋 Vokabeln als Text einfügen</h2>
+    <h2><span data-ico="clipboard"></span> Vokabeln als Text einfügen</h2>
     <p>Eine Vokabel pro Zeile: <b>Fremdsprache – Deutsch</b> (getrennt mit „–“, „-“, „=“, „:“ oder Tab). Mehrere richtige Antworten mit „/“ trennen, z. B. <i>bike/bicycle – das Fahrrad</i>.</p>
     <textarea id="paste-text" placeholder="the dog – der Hund&#10;to run – laufen/rennen&#10;house = das Haus"></textarea>
     <div class="row">
@@ -658,7 +732,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <!-- ============ EXPORT-MODAL ============ -->
 <div class="modal" id="exportmodal">
   <div class="sheet">
-    <h2>📤 Liste exportieren</h2>
+    <h2><span data-ico="exportUp"></span> Liste exportieren</h2>
     <p>Kopiere den Text und schick ihn z. B. per Messenger an Freunde – sie können ihn über „📋 Text einfügen“ importieren.</p>
     <textarea id="export-text" readonly></textarea>
     <div class="row">
@@ -671,7 +745,7 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <!-- ============ STATISTIK-MODAL ============ -->
 <div class="modal" id="statsmodal">
   <div class="sheet">
-    <h2>📊 Deine Statistik</h2>
+    <h2><span data-ico="chart"></span> Deine Statistik</h2>
     <div class="statrows" id="stats-grid"></div>
     <div id="stats-fails"></div>
     <div class="row">
@@ -684,9 +758,38 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
 <!-- ============ PAUSE ============ -->
 <div class="modal" id="pausemodal">
   <div class="sheet">
-    <h2>⏸ Pause – der Zombie wartet (widerwillig) …</h2>
-    <button class="btn mint" id="btn-resume">▶ Weiter!</button>
+    <h2><span data-ico="pause"></span> Pause – der Zombie wartet (widerwillig) …</h2>
+    <button class="btn mint" id="btn-resume">Weiter!</button>
     <button class="btn ghost" id="btn-quit">Aufgeben &amp; zum Start</button>
+  </div>
+</div>
+
+<!-- ============ PROFIL ANLEGEN ============ -->
+<div class="modal" id="registermodal">
+  <div class="sheet">
+    <h2><span data-ico="plus"></span> Neues Profil anlegen</h2>
+    <p>Such dir einen Namen und einen Zombie-Avatar aus. Die PIN ist freiwillig – sie schützt dein Profil vor Geschwistern &amp; Co. auf diesem Gerät.</p>
+    <input class="txt" id="reg-name" placeholder="Dein Name (z. B. Rolands)" maxlength="16" style="width:100%">
+    <div class="ava-pick" id="reg-avatars"></div>
+    <input class="txt" id="reg-pin" placeholder="PIN (optional, 4–8 Ziffern)" inputmode="numeric" maxlength="8" type="password" style="width:100%">
+    <div id="reg-error" style="display:none;color:var(--blood);font-weight:900;font-size:.9rem;margin-top:8px"></div>
+    <div class="row">
+      <button class="btn ghost" id="btn-reg-cancel">Abbrechen</button>
+      <button class="btn small mint" id="btn-reg-create">Profil anlegen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PIN-EINGABE ============ -->
+<div class="modal" id="pinmodal">
+  <div class="sheet" style="text-align:center">
+    <h2><span data-ico="lock"></span> <span id="pin-title">PIN eingeben</span></h2>
+    <input class="txt" id="pin-input" placeholder="PIN" inputmode="numeric" maxlength="8" type="password" style="width:min(240px,100%);text-align:center;font-size:1.3rem;letter-spacing:.3em">
+    <div id="pin-error">Falsche PIN – probier's nochmal!</div>
+    <div class="row" style="justify-content:center">
+      <button class="btn ghost" id="btn-pin-cancel">Abbrechen</button>
+      <button class="btn small mint" id="btn-pin-ok">OK</button>
+    </div>
   </div>
 </div>
 <script>
@@ -706,11 +809,71 @@ body.kb #mbubble{font-size:.8rem;max-width:180px}
    Abhängigkeiten (Tesseract.js nur für den Foto-Scan).
    ========================================================= */
 
+/* ---------- Selbstgezeichnete Icons (statt Emojis) ---------- */
+const ICO = (() => {
+  const w = (inner, vb='0 0 24 24') => `<svg viewBox="${vb}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+  const f = (inner, vb='0 0 24 24') => `<svg viewBox="${vb}" aria-hidden="true">${inner}</svg>`;
+  const flag = inner => `<svg class="flagimg" viewBox="0 0 30 20" aria-hidden="true">${inner}</svg>`;
+  return {
+    swords: w('<path d="M4 4l9 9M4 4v3M4 4h3"/><path d="M20 4l-9 9M20 4v3M20 4h-3"/><path d="M8 16l-3 3M16 16l3 3"/><path d="M6.5 14.5l3 3M17.5 14.5l-3 3"/>'),
+    book: w('<path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M5 17a2 2 0 0 0 2 2h11"/><path d="M9 8h5"/>'),
+    books: w('<rect x="3" y="14" width="18" height="4" rx="1"/><rect x="5" y="9" width="14" height="4" rx="1"/><rect x="7" y="4" width="10" height="4" rx="1"/>'),
+    chart: w('<path d="M4 20V4"/><path d="M4 20h16"/><rect x="7" y="12" width="3" height="5" rx=".5"/><rect x="12" y="8" width="3" height="9" rx=".5"/><rect x="17" y="5" width="3" height="12" rx=".5"/>'),
+    camera: w('<rect x="3" y="7" width="18" height="13" rx="3"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/>'),
+    clipboard: w('<rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1.5"/><path d="M8.5 10h7M8.5 14h7M8.5 17.5h4"/>'),
+    exportUp: w('<path d="M12 14V3"/><path d="M8 7l4-4 4 4"/><path d="M4 13v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/>'),
+    pencil: w('<path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14 7l3 3"/>'),
+    shuffle: w('<path d="M3 7h4l4 5 4 5h4"/><path d="M3 17h4l2-2.5"/><path d="M13 9.5L15 7h4"/><path d="M17 4l3 3-3 3M17 14l3 3-3 3"/>'),
+    arrowR: w('<path d="M4 12h14"/><path d="M13 6l6 6-6 6"/>'),
+    snail: w('<circle cx="9" cy="12" r="5"/><circle cx="9" cy="12" r="2"/><path d="M9 17h8a3 3 0 0 0 3-3"/><path d="M17 17c2 0 3-1.5 3-3.5V9"/><path d="M19 9l-1-3M20.5 9l1-3"/>'),
+    zombieHead: f('<rect x="4" y="6" width="16" height="15" rx="4" fill="#86b25c" stroke="#131519" stroke-width="2"/><rect x="2.5" y="3" width="19" height="5" rx="2" fill="#131519"/><circle cx="9" cy="12.5" r="2.2" fill="#e8e6da" stroke="#131519" stroke-width="1.4"/><circle cx="9.6" cy="13" r=".9" fill="#131519"/><circle cx="15.5" cy="12.5" r="2.5" fill="#d6ff4a" stroke="#131519" stroke-width="1.4"/><circle cx="15.5" cy="12.5" r="1" fill="#131519"/><rect x="8" y="17" width="8" height="2.4" rx="1.2" fill="#131519"/><rect x="9.6" y="17" width="1.4" height="2.4" fill="#e8e2c8"/><rect x="13" y="17" width="1.4" height="2.4" fill="#e8e2c8"/>'),
+    skull: f('<path d="M12 2.5c-5 0-8.5 3.4-8.5 8 0 3 1.5 5 3.5 6.2V20a1.5 1.5 0 0 0 3 0v.5a1.5 1.5 0 0 0 3 0V20a1.5 1.5 0 0 0 3 0v-3.3c2-1.2 3.5-3.2 3.5-6.2 0-4.6-3.5-8-8.5-8z" fill="#e8e6da" stroke="#131519" stroke-width="2"/><circle cx="8.6" cy="11" r="2.2" fill="#131519"/><circle cx="15.4" cy="11" r="2.2" fill="#131519"/><path d="M12 13.5l-1.2 2.4h2.4z" fill="#131519"/>'),
+    heart: f('<path d="M12 21S3.5 15.5 3.5 9.6C3.5 6.4 6 4 9 4c1.7 0 3 .9 3 .9S13.3 4 15 4c3 0 5.5 2.4 5.5 5.6C20.5 15.5 12 21 12 21z" fill="#ff4747" stroke="#131519" stroke-width="2"/>'),
+    heartO: f('<path d="M12 21S3.5 15.5 3.5 9.6C3.5 6.4 6 4 9 4c1.7 0 3 .9 3 .9S13.3 4 15 4c3 0 5.5 2.4 5.5 5.6C20.5 15.5 12 21 12 21z" fill="none" stroke="#8a8f98" stroke-width="2"/>'),
+    plus: w('<path d="M12 5v14M5 12h14"/>'),
+    bulb: w('<path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.8c.9.7 1.5 1.3 1.5 2.2h4c0-.9.6-1.5 1.5-2.2A6 6 0 0 0 12 3z"/>'),
+    pause: f('<rect x="6" y="4" width="4.5" height="16" rx="1.5" fill="currentColor"/><rect x="13.5" y="4" width="4.5" height="16" rx="1.5" fill="currentColor"/>'),
+    speaker: w('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 9a4 4 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/>'),
+    trophy: w('<path d="M8 4h8v6a4 4 0 0 1-8 0z"/><path d="M8 5H4.5v1.5A3.5 3.5 0 0 0 8 10M16 5h3.5v1.5A3.5 3.5 0 0 1 16 10"/><path d="M12 14v3"/><path d="M8 20h8M10 17h4v3"/>'),
+    flame: f('<path d="M12 2.5c1 3-1.5 4.5-1.5 7 0 1.2.7 2 .7 2s-2.2-.6-3-2.8C6.3 10.4 5 12.4 5 15a7 7 0 0 0 14 0c0-5.5-4.5-7.5-7-12.5z" fill="#ffb347" stroke="#131519" stroke-width="2"/><path d="M12 20.5a3.4 3.4 0 0 1-3.4-3.4c0-2 1.7-2.7 3.4-5 1.7 2.3 3.4 3 3.4 5A3.4 3.4 0 0 1 12 20.5z" fill="#ffe08a"/>'),
+    star: f('<path d="M12 2.5l2.5 6 6.5.6-5 4.3 1.6 6.4L12 16.4 6.4 19.8 8 13.4 3 9.1l6.5-.6z" fill="#ffc83d" stroke="#131519" stroke-width="1.8" stroke-linejoin="round"/>'),
+    home: w('<path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-6h4v6"/>'),
+    restart: w('<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M6 3v4h4"/>'),
+    trash: w('<path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6.5 7l1 13h9l1-13"/><path d="M10 11v6M14 11v6"/>'),
+    lock: w('<rect x="5.5" y="10.5" width="13" height="9.5" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><circle cx="12" cy="15.2" r="1.4" fill="currentColor" stroke="none"/>'),
+    grad: w('<path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11.3V15c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-3.7"/><path d="M21.5 9v4.5"/>'),
+    photo: w('<rect x="3" y="5" width="18" height="15" rx="3"/><circle cx="9" cy="10.5" r="1.8"/><path d="M4 18l5-5 3.5 3.5L16 13l4 4"/>'),
+    de: flag('<rect width="30" height="6.7" fill="#1a1a1a"/><rect y="6.7" width="30" height="6.6" fill="#d0342c"/><rect y="13.3" width="30" height="6.7" fill="#ffc83d"/>'),
+    en: flag('<rect width="30" height="20" fill="#2a4b8d"/><path d="M0 0l30 20M30 0L0 20" stroke="#fff" stroke-width="4.5"/><path d="M0 0l30 20M30 0L0 20" stroke="#d0342c" stroke-width="2"/><rect x="12" width="6" height="20" fill="#fff"/><rect y="7" width="30" height="6" fill="#fff"/><rect x="13.4" width="3.2" height="20" fill="#d0342c"/><rect y="8.4" width="30" height="3.2" fill="#d0342c"/>'),
+    fr: flag('<rect width="10" height="20" fill="#2a4b8d"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#d0342c"/>'),
+    es: flag('<rect width="30" height="20" fill="#d0342c"/><rect y="5" width="30" height="10" fill="#ffc83d"/>'),
+    globe: w('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.8 2.6 4 5.6 4 9s-1.2 6.4-4 9c-2.8-2.6-4-5.6-4-9s1.2-6.4 4-9z"/>'),
+  };
+})();
+function ic(name, cls){ return `<span class="ic${cls?' '+cls:''}">${ICO[name]||''}</span>`; }
+/* Zombie-Avatare für Profile */
+const AVA_SKINS = ['#86b25c','#b48ce0','#ff9f68','#5ab8ff'];
+function zAvatar(i){
+  const skin = AVA_SKINS[i % AVA_SKINS.length];
+  const hair = ['#1a1512','#2c2036','#4a2313','#12283a'][i % 4];
+  return `<svg viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="4" y="7" width="24" height="21" rx="6" fill="${skin}" stroke="#131519" stroke-width="2"/>
+    <path d="M3 8c0-3 3-5 13-5s13 2 13 5l-2 3-3-2-3 2-3-2-3 2-3-2-3 2z" fill="${hair}" stroke="#131519" stroke-width="1.5"/>
+    <circle cx="11" cy="17" r="3.2" fill="#e8e6da" stroke="#131519" stroke-width="1.5"/>
+    <circle cx="11.8" cy="17.6" r="1.2" fill="#131519"/>
+    <circle cx="21" cy="17" r="3.6" fill="#d6ff4a" stroke="#131519" stroke-width="1.5"/>
+    <circle cx="21" cy="17" r="1.4" fill="#131519"/>
+    <path d="M10 24h12" stroke="#131519" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M13 22.5v3M16 22.5v3M19 22.5v3" stroke="#131519" stroke-width="1.4"/>
+    <path d="M24.5 12l3-2" stroke="#131519" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>`;
+}
+
 /* ---------- Sprachen ---------- */
 const LANGS = {
-  en: { name:'Englisch',    flag:'🇬🇧', ocr:'eng' },
-  fr: { name:'Französisch', flag:'🇫🇷', ocr:'fra' },
-  es: { name:'Spanisch',    flag:'🇪🇸', ocr:'spa' },
+  en: { name:'Englisch',    flag:'en', ocr:'eng' },
+  fr: { name:'Französisch', flag:'fr', ocr:'fra' },
+  es: { name:'Spanisch',    flag:'es', ocr:'spa' },
 };
 
 /* ---------- Eingebaute Starter-Vokabeln (Fremdsprache | Deutsch) ---------- */
@@ -1045,18 +1208,75 @@ function checkAnswer(input, solution, strictAccents){
   return false;
 }
 
-/* ---------- Speicher ---------- */
+/* ---------- Speicher (pro Spielerprofil) ---------- */
+let PID = null;   // aktives Profil
 const store = {
-  get(k,d){ try{ const v = localStorage.getItem('vm_'+k); return v===null? d : JSON.parse(v); }catch(e){ return d; } },
-  set(k,v){ try{ localStorage.setItem('vm_'+k, JSON.stringify(v)); }catch(e){} },
+  key(k){ return PID ? 'vm_p'+PID+'_'+k : 'vm_'+k; },
+  get(k,d){ try{ const v = localStorage.getItem(this.key(k)); return v===null? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem(this.key(k), JSON.stringify(v)); }catch(e){} },
 };
-let settings = Object.assign({ sound:true, strictAccents:false, difficulty:'normal', practice:false }, store.get('settings',{}));
-let customLists = store.get('lists', []);   // [{id,name,lang,words:[[fl,de],...]}]
-let highs = store.get('highs', {});         // key -> score
+
+/* ---------- Profile: Registrierung & Login (nur auf diesem Gerät) ---------- */
+const PROFILE_KEYS = ['settings','lists','highs','stats','fails','learned','xp','streak','lastLang','lastDir','lastLevel'];
+function getProfiles(){ try{ return JSON.parse(localStorage.getItem('vm_profiles'))||[]; }catch(e){ return []; } }
+function setProfiles(p){ try{ localStorage.setItem('vm_profiles', JSON.stringify(p)); }catch(e){} }
+function lastProfileId(){ try{ return localStorage.getItem('vm_last_profile')||''; }catch(e){ return ''; } }
+function rememberProfile(id){ try{ localStorage.setItem('vm_last_profile', id); }catch(e){} }
+async function hashPin(pin){
+  try{
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('vm:'+pin));
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }catch(e){
+    let h = 2166136261; const s = 'vm:'+pin;
+    for(let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h,16777619)>>>0; }
+    return 'f'+h.toString(16);
+  }
+}
+function profileXp(id){ try{ const v = localStorage.getItem('vm_p'+id+'_xp'); return v?JSON.parse(v):0; }catch(e){ return 0; } }
+function deleteProfileData(id){
+  for(const k of PROFILE_KEYS){ try{ localStorage.removeItem('vm_p'+id+'_'+k); }catch(e){} }
+  setProfiles(getProfiles().filter(p=>p.id!==id));
+}
+/* Bestandsdaten (vor dem Profilsystem) in ein erstes Profil übernehmen */
+function migrateLegacyToProfile(){
+  if(getProfiles().length) return;
+  let hasLegacy = false;
+  for(const k of PROFILE_KEYS){ try{ if(localStorage.getItem('vm_'+k)!==null){ hasLegacy = true; break; } }catch(e){} }
+  if(!hasLegacy) return;
+  const id = uid();
+  for(const k of PROFILE_KEYS){
+    try{
+      const v = localStorage.getItem('vm_'+k);
+      if(v!==null){ localStorage.setItem('vm_p'+id+'_'+k, v); localStorage.removeItem('vm_'+k); }
+    }catch(e){}
+  }
+  setProfiles([{ id, name:'Spieler 1', pin:'', avatar:0 }]);
+  rememberProfile(id);
+}
+
+/* Spielstand des aktiven Profils laden (nach dem Login) */
+let settings, customLists, highs, stats, fails, learned, xp, streak;
+function loadProfileData(id){
+  PID = id;
+  rememberProfile(id);
+  settings = Object.assign({ sound:true, strictAccents:false, difficulty:'normal', practice:false }, store.get('settings',{}));
+  customLists = store.get('lists', []);   // [{id,name,lang,words:[[fl,de],...]}]
+  highs = store.get('highs', {});         // key -> score
+  migrateHighs();
+  stats = Object.assign({ games:0, kills:0, correct:0, wrong:0, hints:0, bestWave:0, timeMs:0 }, store.get('stats',{}));
+  fails = store.get('fails', {});
+  learned = store.get('learned', {});
+  xp = store.get('xp', 0);
+  streak = Object.assign({ last:'', days:0 }, store.get('streak',{}));
+  selLang = store.get('lastLang','en');
+  selDir = store.get('lastDir','mix');
+  selLevel = store.get('lastLevel','a1');
+  if(!CEFR[selLevel]) selLevel = 'a1';
+}
 // Migration: alte Rekord-Keys in das aktuelle Schema überführen
 // v1 (2D): "sprache:richtung"  ->  + ":normal"
 // v2 (3D ohne Niveaus): "en|fr|es:richtung:schwierigkeit"  ->  Niveau "a1" einfügen
-(function(){
+function migrateHighs(){
   let migrated = false;
   for(const k of Object.keys(highs)){
     if(k.split(':').length === 2){
@@ -1076,15 +1296,10 @@ let highs = store.get('highs', {});         // key -> score
     }
   }
   if(migrated) store.set('highs', highs);
-})();
-let stats = Object.assign({ games:0, kills:0, correct:0, wrong:0, hints:0, bestWave:0, timeMs:0 }, store.get('stats',{}));
-let fails = store.get('fails', {});         // "fl|de" -> Anzahl verfehlt (für gewichtete Wiederholung)
-let learned = store.get('learned', {});     // "fl|de" -> Anzahl richtig (ab 3× gilt sie als gelernt)
-let xp = store.get('xp', 0);
-let streak = Object.assign({ last:'', days:0 }, store.get('streak',{}));
-function saveLists(){ store.set('lists', customLists); pruneFails(); }
-function saveSettings(){ store.set('settings', settings); }
-function saveProgress(){ store.set('stats',stats); store.set('fails',fails); store.set('learned',learned); store.set('xp',xp); store.set('streak',streak); }
+}
+function saveLists(){ if(!PID) return; store.set('lists', customLists); pruneFails(); }
+function saveSettings(){ if(!PID) return; store.set('settings', settings); }
+function saveProgress(){ if(!PID) return; store.set('stats',stats); store.set('fails',fails); store.set('learned',learned); store.set('xp',xp); store.set('streak',streak); }
 
 /* Klassenstufen: Level = "Klasse", steigt mit XP */
 function levelFor(x){ return Math.min(13, Math.floor(Math.sqrt(x/150)) + 1); }
@@ -1128,7 +1343,8 @@ const $ = id => document.getElementById(id);
   background:rgba(19,21,25,.9);padding:.45em .9em .3em;border-radius:12px;border:2px solid rgba(141,252,94,.4);
   box-shadow:0 3px 0 rgba(0,0,0,.5);transform:translate(-50%,-100%);display:none;
 }
-#zname .hp{color:var(--blood);letter-spacing:.1em;margin-left:.35em}
+#zname .hp{margin-left:.35em;display:inline-flex;gap:2px;vertical-align:-2px}
+#zname .hp .ic svg{width:.85em;height:.85em}
 </style>
 <script>
 'use strict';
@@ -1757,10 +1973,7 @@ function showModal(id,on=true){ $(id).classList.toggle('show',on); }
 /* =========================================================
    Startscreen
    ========================================================= */
-let selLang = store.get('lastLang','en');
-let selDir  = store.get('lastDir','mix');
-let selLevel = store.get('lastLevel','a1');
-if(!CEFR[selLevel]) selLevel = 'a1';
+let selLang = 'en', selDir = 'mix', selLevel = 'a1';   // wird in loadProfileData() gesetzt
 
 function poolFor(sel){
   if(BUILTIN[sel]) return { words: BUILTIN[sel][selLevel] || BUILTIN[sel].a1, lang:sel, label:LANGS[sel].name+' '+CEFR[selLevel].label, kind:sel };
@@ -1780,7 +1993,7 @@ function renderLangGrid(){
   for(const k of ['en','fr','es']){
     const b = document.createElement('button');
     b.className='choice'+(selLang===k?' sel':'');
-    b.innerHTML = `<span class="flag">${LANGS[k].flag}</span><span class="name">${LANGS[k].name}</span><span class="sub">🧟 ${MONSTERS[k].name}</span>`;
+    b.innerHTML = `<span class="flag">${ic(LANGS[k].flag)}</span><span class="name">${LANGS[k].name}</span><span class="sub">${MONSTERS[k].name}</span>`;
     b.onclick = ()=>{ selLang=k; store.set('lastLang',k); renderLangGrid(); renderHi(); };
     g.appendChild(b);
   }
@@ -1788,7 +2001,7 @@ function renderLangGrid(){
     const b = document.createElement('button');
     const n = l.words.length;
     b.className='choice'+(selLang===l.id?' sel':'');
-    b.innerHTML = `<span class="flag">📖</span><span class="name">${esc(l.name||'Eigene Liste')}</span><span class="sub">${(LANGS[l.lang]||{}).name||'?'} · ${n} Vok.</span>`;
+    b.innerHTML = `<span class="flag">${ic('book')}</span><span class="name">${esc(l.name||'Eigene Liste')}</span><span class="sub">${(LANGS[l.lang]||{}).name||'?'} · ${n} Vok.</span>`;
     b.onclick = ()=>{
       if(n<4){ alert('Diese Liste hat erst '+n+' Vokabeln – mindestens 4 zum Spielen. Unter „Meine Listen“ auffüllen!'); return; }
       selLang=l.id; store.set('lastLang',l.id); renderLangGrid(); renderHi();
@@ -1796,7 +2009,7 @@ function renderLangGrid(){
     g.appendChild(b);
   }
   const add = document.createElement('button');
-  add.className='choice'; add.innerHTML = `<span class="flag">➕</span><span class="name">Eigene Liste</span><span class="sub">tippen, einfügen oder 📸 scannen</span>`;
+  add.className='choice'; add.innerHTML = `<span class="flag">${ic('plus')}</span><span class="name">Eigene Liste</span><span class="sub">tippen, einfügen oder scannen</span>`;
   add.onclick = openLists;
   g.appendChild(add);
   if(!poolFor(selLang)){ selLang='en'; renderLangGrid(); }
@@ -1832,7 +2045,7 @@ function renderHi(){
   const h = highs[hiKey()];
   const p = poolFor(selLang);
   const where = (p ? p.label : '') + ' · ' + DIFFS[settings.difficulty].label;
-  $('hi-line').innerHTML = h ? `🏆 Rekord (${esc(where)}): <b>${h}</b> Punkte` : 'Noch kein Rekord – zeig\'s den Zombies!';
+  $('hi-line').innerHTML = h ? `${ic('trophy')} Rekord (${esc(where)}): <b>${h}</b> Punkte` : 'Noch kein Rekord – zeig\'s den Zombies!';
 }
 function renderLevel(){
   const lvl = levelFor(xp);
@@ -1841,7 +2054,17 @@ function renderLevel(){
   $('lvl-label').textContent = levelLabel(lvl);
   $('xp-fill').style.width = pct+'%';
   $('xp-label').textContent = xp+' XP';
-  $('streak-label').textContent = streak.days>1 ? ('🔥 '+streak.days+' Tage in Folge') : '';
+  $('streak-label').innerHTML = streak.days>1 ? (ic('flame')+' '+streak.days+' Tage in Folge') : '';
+  renderProfileChip();
+}
+function renderProfileChip(){
+  const el = $('profile-chip');
+  if(!el) return;
+  const p = getProfiles().find(x=>x.id===PID);
+  if(!p){ el.innerHTML=''; return; }
+  el.innerHTML = `<span class="pava">${zAvatar(p.avatar||0)}</span>${esc(p.name)}<button id="btn-switch-profile">Profil wechseln</button>`;
+  const b = document.getElementById('btn-switch-profile');
+  if(b) b.onclick = ()=>{ saveProgress(); showLogin(); };
 }
 
 /* =========================================================
@@ -1909,10 +2132,10 @@ function nextWave(){
   G.wave++; G.inWave=0;
   G.boss = (G.wave % 4 === 0);
   G.waveSize = G.boss ? 1 : Math.min(5 + Math.ceil(G.wave/2), 9);
-  $('wavebadge').textContent = (G.practice?'🎓 Training · ':'') + 'Welle ' + G.wave;
+  $('wavebadge').textContent = (G.practice?'Training · ':'') + 'Welle ' + G.wave;
   const big = $('ann-big');
   big.classList.toggle('boss', G.boss);
-  announce(G.boss ? '☠️ ' + MONSTERS.boss.name : 'Welle ' + G.wave,
+  announce(G.boss ? MONSTERS.boss.name : 'Welle ' + G.wave,
            G.boss ? 'Er braucht 3 Treffer!' : waveFlavor());
   G.boss ? Sound.boss() : Sound.wave();
   afterDelay(1400, ()=>{ hideAnnounce(); spawnMonster(); });
@@ -1939,7 +2162,8 @@ function spawnMonster(){
 function updateZName(){
   const el = $('zname');
   const kind = monsterKindNow();
-  el.innerHTML = esc(MONSTERS[kind].name) + (G.boss ? ' <span class="hp">'+'❤'.repeat(G.hp)+'♡'.repeat(G.maxHp-G.hp)+'</span>' : '');
+  const hp = G.boss ? ' <span class="hp">'+ic('heart').repeat(G.hp)+ic('heartO').repeat(G.maxHp-G.hp)+'</span>' : '';
+  el.innerHTML = esc(MONSTERS[kind].name) + hp;
   el.style.display = 'block';
 }
 
@@ -1951,12 +2175,13 @@ function newQuestion(){
   const langName = (LANGS[G.pool.lang]||{name:'Fremdsprache'}).name;
   if(G.curDir==='copy'){
     // Abschreib-Modus: Vokabel + Bedeutung stehen da, schnell abtippen
-    $('ask-lang').textContent = '📝 ABSCHREIBEN & EINPRÄGEN';
+    $('ask-lang').textContent = 'ABSCHREIBEN & EINPRÄGEN';
     $('prompt').innerHTML = `${esc(fl)}<small style="display:block;font-size:.55em;color:#3c76c2;font-weight:800">= ${esc(de)}</small>`;
   } else {
     const q = G.curDir==='de2fl' ? de : fl;
+    const fkey = G.curDir==='de2fl' ? 'de' : ((LANGS[G.pool.lang]||{}).flag || 'globe');
     $('ask-lang').textContent = G.curDir==='de2fl' ? ('Gesucht: '+langName.toUpperCase()) : 'GESUCHT: DEUTSCH';
-    $('prompt').innerHTML = `<span class="dirflag">${G.curDir==='de2fl'?'🇩🇪':(LANGS[G.pool.lang]||{}).flag||'🌍'}</span>${esc(q)}`;
+    $('prompt').innerHTML = `<span class="dirflag">${ic(fkey)}</span>${esc(q)}`;
   }
   $('task-count').textContent = G.boss ? `Boss ${G.maxHp-G.hp+1} / ${G.maxHp}` : `Zombie ${G.inWave} / ${G.waveSize}`;
   const diffMul = DIFFS[settings.difficulty].time * (G.practice ? 2.6 : 1);
@@ -2049,7 +2274,7 @@ function renderHearts(pop=false){
     const s = document.createElement('span');
     s.className = 'h' + (i>=G.lives ? ' lost' : '');
     if(pop && i===G.lives) s.classList.add('pop');
-    s.textContent = '❤️';
+    s.innerHTML = ic('heart');
     h.appendChild(s);
   }
   if(G.practice){ h.style.opacity='.25'; } else h.style.opacity='';
@@ -2195,15 +2420,15 @@ function gameOver(won){
   const xpEl = $('ov-xp');
   if(gained>0){
     xpEl.style.display='';
-    xpEl.textContent = '✨ +'+gained+' XP → '+levelLabel(levelFor(xp)) + (G.practice?' (Training: halbe XP)':'');
+    xpEl.innerHTML = ic('star')+' +'+gained+' XP → '+esc(levelLabel(levelFor(xp))) + (G.practice?' (Training: halbe XP)':'');
   } else xpEl.style.display='none';
   const ov=$('over-vocab');
   if(G.misses.length){
     const seen=new Set();
     const rows=G.misses.filter(([q,a])=>{const k=q+'|'+a; if(seen.has(k))return false; seen.add(k); return true;})
       .slice(0,8).map(([q,a])=>`<div class="missrow"><span class="q">${esc(q)}</span><span class="a">${esc(a)}</span></div>`).join('');
-    ov.innerHTML='<h3>📝 Die musst du nochmal üben (kommen jetzt öfter dran):</h3>'+rows;
-  } else ov.innerHTML = won? '<h3 style="text-align:center">Keine einzige Vokabel verfehlt – Wahnsinn! 🌟</h3>':'';
+    ov.innerHTML='<h3>Die musst du nochmal üben (kommen jetzt öfter dran):</h3>'+rows;
+  } else ov.innerHTML = won? '<h3 style="text-align:center">Keine einzige Vokabel verfehlt – Wahnsinn!</h3>':'';
   renderHi(); renderLevel();
   showScreen('screen-over');
 }
@@ -2228,14 +2453,14 @@ function renderLists(){
     card.className='listcard';
     card.innerHTML=`
       <div class="lc-head">
-        <span class="lc-flag">${(LANGS[l.lang]||{flag:'🌍'}).flag}</span>
+        <span class="lc-flag">${ic((LANGS[l.lang]||{}).flag||'globe')}</span>
         <span class="lc-name">${esc(l.name||'Ohne Namen')}</span>
         <span class="lc-meta">${(LANGS[l.lang]||{name:'?'}).name} · ${l.words.length} Vokabeln</span>
       </div>
       <div class="lc-actions">
-        <button class="btn small mint" data-act="play">⚔️ Spielen</button>
-        <button class="btn small" data-act="edit">✏️ Bearbeiten</button>
-        <button class="btn small red" data-act="del">🗑</button>
+        <button class="btn small mint" data-act="play">${ic('swords')} Spielen</button>
+        <button class="btn small" data-act="edit">${ic('pencil')} Bearbeiten</button>
+        <button class="btn small red" data-act="del">${ic('trash')}</button>
       </div>`;
     card.querySelector('[data-act=play]').onclick=()=>{
       if(l.words.length<4){ alert('Mindestens 4 Vokabeln nötig – die Liste hat erst '+l.words.length+'.'); return; }
@@ -2260,7 +2485,7 @@ function openEditor(id){
   editId=id;
   const l=curList(); if(!l) return;
   const sel=$('ed-lang');
-  sel.innerHTML = Object.entries(LANGS).map(([k,v])=>`<option value="${k}">${v.flag} ${v.name}</option>`).join('');
+  sel.innerHTML = Object.entries(LANGS).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');
   sel.value=l.lang;
   $('ed-name').value=l.name||'';
   reviewRows=null;
@@ -2274,7 +2499,7 @@ function renderEditorRows(){
   if(reviewRows && reviewRows.length){
     const head=document.createElement('div');
     head.style.cssText='width:min(680px,100%);margin:6px auto;font-weight:900;color:#9ed0ff';
-    head.innerHTML=`🔎 ${reviewRows.length} erkannte Vokabeln – prüfen &amp; übernehmen: <button class="btn small mint" id="btn-take-all" style="margin-left:8px">Alle übernehmen</button>`;
+    head.innerHTML=`${reviewRows.length} erkannte Vokabeln – prüfen &amp; übernehmen: <button class="btn small mint" id="btn-take-all" style="margin-left:8px">Alle übernehmen</button>`;
     c.appendChild(head);
     reviewRows.forEach((r,i)=>c.appendChild(makeRow(r,i,true,langName)));
     head.querySelector('#btn-take-all').onclick=()=>{
@@ -2381,7 +2606,7 @@ async function runOCR(file){
     const rows=parseVocabText(data.text||'');
     status.style.display='none';
     if(!rows.length){
-      err.innerHTML='😕 Keine Vokabelpaare erkannt. Tipp: näher rangehen, gerade halten, gutes Licht – oder die Vokabeln über „📋 Text einfügen“ eintragen.';
+      err.innerHTML='Keine Vokabelpaare erkannt. Tipp: näher rangehen, gerade halten, gutes Licht – oder die Vokabeln über „Text einfügen“ eintragen.';
       err.style.display='block';
       return;
     }
@@ -2390,7 +2615,7 @@ async function runOCR(file){
     renderEditorRows();
   }catch(e){
     status.style.display='none';
-    err.innerHTML='⚠️ Texterkennung nicht möglich ('+esc(e.message||'Fehler')+'). Dafür ist einmalig Internet nötig. Alternativ: „📋 Text einfügen“.';
+    err.innerHTML='Texterkennung nicht möglich ('+esc(e.message||'Fehler')+'). Dafür ist einmalig Internet nötig. Alternativ: „Text einfügen“.';
     err.style.display='block';
   }
 }
@@ -2410,13 +2635,13 @@ function openStats(){
     [stats.correct,'Richtig'], [stats.wrong,'Falsch/Verpasst'], [stats.hints,'Tipps benutzt'],
     [stats.bestWave||0,'Beste Welle'], [fmtTime(stats.timeMs||0),'Spielzeit'],
     [learnedCount,'Gelernt (3× richtig)'],
-    [xp+' XP', levelLabel(levelFor(xp))], [(streak.days||0)+' 🔥','Tage-Serie'],
+    [xp+' XP', levelLabel(levelFor(xp))], [(streak.days||0),'Tage-Serie'],
   ].map(([v,l])=>`<div class="statcell"><b>${esc(String(v))}</b><span>${esc(l)}</span></div>`).join('');
   const worst = Object.entries(fails).sort((a,b)=>b[1]-a[1]).slice(0,8);
   $('stats-fails').innerHTML = worst.length
-    ? '<p style="margin-bottom:8px">😈 Deine Angstgegner (kommen im Spiel öfter dran):</p>' +
+    ? '<p style="margin-bottom:8px">Deine Angstgegner (kommen im Spiel öfter dran):</p>' +
       worst.map(([k,n])=>{ const [fl,de]=k.split('|'); return `<div class="missrow"><span class="q">${esc(fl)} – ${esc(de)}</span><span class="a">${n}× verfehlt</span></div>`; }).join('')
-    : '<p>Keine Angstgegner – stark! 💪</p>';
+    : '<p>Keine Angstgegner – stark!</p>';
   showModal('statsmodal',true);
 }
 
@@ -2518,7 +2743,139 @@ function wire(){
   document.addEventListener('pointerdown',()=>Sound.unlock(),{once:true});
 }
 
+/* =========================================================
+   Icons einsetzen (statt Emojis)
+   ========================================================= */
+function hydrateIcons(root){
+  (root||document).querySelectorAll('[data-ico]').forEach(el=>{
+    el.classList.add('ic');
+    el.innerHTML = ICO[el.dataset.ico]||'';
+    el.removeAttribute('data-ico');
+  });
+}
+
+/* =========================================================
+   Profile: Login, Registrierung, PIN
+   ========================================================= */
+let wired = false;
+let regAvatar = 0;
+let pinResolve = null;
+
+function showLogin(){ renderLoginGrid(); showScreen('screen-login'); }
+function renderLoginGrid(){
+  const g = $('profile-grid'); g.innerHTML='';
+  const last = lastProfileId();
+  for(const p of getProfiles()){
+    const pxp = profileXp(p.id);
+    const card = document.createElement('button');
+    card.className = 'pcard' + (p.id===last?' last':'');
+    card.innerHTML = `
+      ${p.pin ? '<span class="plock ic">'+ICO.lock+'</span>' : ''}
+      <span class="pava">${zAvatar(p.avatar||0)}</span>
+      <span class="pname">${esc(p.name)}</span>
+      <span class="pmeta">${esc(levelLabel(levelFor(pxp)))} · ${pxp} XP</span>
+      <span class="pdel" data-del="1" title="Profil löschen">✕</span>`;
+    card.onclick = (e)=>{
+      if(e.target.closest('[data-del]')){ deleteFlow(p); return; }
+      loginProfile(p);
+    };
+    g.appendChild(card);
+  }
+  const add = document.createElement('button');
+  add.className = 'pcard newp';
+  add.innerHTML = `<span class="plus">+</span><span class="pname">Neues Profil</span><span class="pmeta">Registrieren</span>`;
+  add.onclick = openRegister;
+  g.appendChild(add);
+}
+
+function askPin(title){
+  return new Promise(res=>{
+    pinResolve = res;
+    $('pin-title').textContent = title;
+    $('pin-input').value='';
+    showModal('pinmodal', true);
+    setTimeout(()=>$('pin-input').focus(), 80);
+  });
+}
+async function loginProfile(p){
+  if(p.pin){
+    $('pin-error').style.display='none';
+    for(;;){
+      const v = await askPin('PIN für '+p.name);
+      if(v===null){ showModal('pinmodal', false); return; }
+      if((await hashPin(v)) === p.pin){ showModal('pinmodal', false); break; }
+      $('pin-error').style.display='block';
+      $('pin-input').value=''; $('pin-input').focus();
+    }
+  }
+  enterApp(p);
+}
+async function deleteFlow(p){
+  if(!confirm('Profil „'+p.name+'“ mit allen XP, Rekorden und Listen wirklich löschen?')) return;
+  if(p.pin){
+    $('pin-error').style.display='none';
+    const v = await askPin('Zum Löschen: PIN für '+p.name);
+    showModal('pinmodal', false);
+    if(v===null) return;
+    if((await hashPin(v)) !== p.pin){ alert('Falsche PIN – Profil bleibt.'); return; }
+  }
+  deleteProfileData(p.id);
+  if(PID===p.id) PID = null;
+  renderLoginGrid();
+}
+function openRegister(){
+  regAvatar = 0;
+  $('reg-name').value=''; $('reg-pin').value=''; $('reg-error').style.display='none';
+  const av = $('reg-avatars'); av.innerHTML='';
+  AVA_SKINS.forEach((_,i)=>{
+    const b = document.createElement('button');
+    b.className = i===0 ? 'sel' : '';
+    b.innerHTML = zAvatar(i);
+    b.onclick = ()=>{ regAvatar=i; [...av.children].forEach((c,j)=>c.classList.toggle('sel', j===i)); };
+    av.appendChild(b);
+  });
+  showModal('registermodal', true);
+  setTimeout(()=>$('reg-name').focus(), 80);
+}
+async function createProfile(){
+  const name = $('reg-name').value.trim();
+  const pin = $('reg-pin').value.trim();
+  const err = $('reg-error');
+  const fail = m => { err.textContent = m; err.style.display='block'; };
+  if(!name) return fail('Bitte gib einen Namen ein.');
+  if(getProfiles().some(p=>p.name.toLowerCase()===name.toLowerCase())) return fail('Diesen Namen gibt es schon auf diesem Gerät.');
+  if(pin && !/^\d{4,8}$/.test(pin)) return fail('Die PIN muss aus 4–8 Ziffern bestehen.');
+  const prof = { id:uid(), name, avatar:regAvatar, pin: pin ? await hashPin(pin) : '' };
+  setProfiles([...getProfiles(), prof]);
+  showModal('registermodal', false);
+  enterApp(prof);
+}
+function enterApp(p){
+  loadProfileData(p.id);
+  pruneFails();
+  Sound.setEnabled(settings.sound);
+  if(!wired){ wire(); wired = true; }
+  $('set-sound').checked = settings.sound;
+  $('set-accents').checked = settings.strictAccents;
+  $('set-practice').checked = !!settings.practice;
+  renderLangGrid();
+  renderDir();
+  renderDiff();
+  renderHi();
+  renderLevel();
+  showScreen('screen-start');
+}
+function wireLogin(){
+  $('btn-reg-cancel').onclick = ()=>showModal('registermodal', false);
+  $('btn-reg-create').onclick = createProfile;
+  $('reg-pin').addEventListener('keydown', e=>{ if(e.key==='Enter') createProfile(); });
+  $('btn-pin-ok').onclick = ()=>{ if(pinResolve){ const r=pinResolve; pinResolve=null; r($('pin-input').value); } };
+  $('btn-pin-cancel').onclick = ()=>{ if(pinResolve){ const r=pinResolve; pinResolve=null; r(null); } };
+  $('pin-input').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); $('btn-pin-ok').click(); } });
+}
+
 function init(){
+  hydrateIcons();
   // Namensschild für den Zombie (folgt ihm über die 3D-Szene)
   const zn=document.createElement('div'); zn.id='zname'; document.body.appendChild(zn);
 
@@ -2529,7 +2886,6 @@ function init(){
     return;
   }
   S3.setOnFrame(gameUpdate);
-  pruneFails();
   // Bildschirmtastatur: Spiel-Screen UND 3D-Ansicht an den sichtbaren Viewport heften,
   // damit nichts hinter der Tastatur verschwindet; Kompakt-Layout via body.kb
   if('visualViewport' in window){
@@ -2546,12 +2902,9 @@ function init(){
     vv.addEventListener('resize', fit);
     vv.addEventListener('scroll', fit);
   }
-  renderLangGrid();
-  renderDir();
-  renderDiff();
-  renderHi();
-  renderLevel();
-  wire();
+  wireLogin();
+  migrateLegacyToProfile();
+  showLogin();
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>
