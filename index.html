@@ -440,6 +440,22 @@ select.txt{appearance:none;flex:0 1 auto}
 .shake{animation:screenShake .4s}
 @keyframes screenShake{0%,100%{transform:translate(0,0)}20%{transform:translate(-8px,4px)}40%{transform:translate(7px,-5px)}60%{transform:translate(-5px,3px)}80%{transform:translate(4px,-2px)}}
 
+/* Kompakt-Layout, wenn die Bildschirmtastatur offen ist (body.kb) */
+body.kb .hud{padding:4px 10px 2px}
+body.kb .hearts{font-size:1.05rem}
+body.kb .scorebox{font-size:1rem}
+body.kb .combobox{font-size:.85rem}
+body.kb .wavebadge{display:none}
+body.kb #wordcard{padding:5px 12px 7px;transform:none;border-radius:14px}
+body.kb #wordcard .lab{display:none}
+body.kb #prompt{font-size:clamp(1.05rem,4.5vw,1.5rem)}
+body.kb #timerbar{margin-top:4px;height:7px}
+body.kb #quizbar{padding:4px 8px 8px;gap:5px}
+body.kb #answer{font-size:1.05rem;padding:.5em .8em;border-radius:12px;box-shadow:0 3px 0 var(--ink)}
+body.kb #quizbar .btn.small{font-size:.85rem;padding:.5em .75em .4em}
+body.kb #announce .big{font-size:2rem}
+body.kb #mbubble{font-size:.8rem;max-width:180px}
+
 @media (max-width:480px){
   .hud .wavebadge{display:none}
 }
@@ -472,11 +488,13 @@ select.txt{appearance:none;flex:0 1 auto}
     <div class="panel">
       <h2>1. Wer greift dich an? <span class="tag">Sprache</span></h2>
       <div class="choice-grid" id="lang-grid"></div>
+      <div class="dir-row" id="level-row" style="margin-top:12px"></div>
     </div>
 
     <div class="panel">
-      <h2>2. Richtung <span class="tag">Abfrage</span></h2>
+      <h2>2. Modus <span class="tag">Abfrage</span></h2>
       <div class="dir-row" id="dir-grid">
+        <button class="choice" data-dir="copy"><span class="flag">📝</span><span class="name">Abschreiben<br><small>Vokabel steht da – schnell abtippen &amp; einprägen (zum ersten Lernen)</small></span></button>
         <button class="choice" data-dir="de2fl"><span class="flag">🇩🇪➜</span><span class="name">Deutsch ➜ Fremdsprache</span></button>
         <button class="choice" data-dir="fl2de"><span class="flag">➜🇩🇪</span><span class="name">Fremdsprache ➜ Deutsch</span></button>
         <button class="choice sel" data-dir="mix"><span class="flag">🔀</span><span class="name">Gemischt</span></button>
@@ -754,6 +772,169 @@ es: [
   ['hola','hallo'],['gracias','danke'],['por favor','bitte'],
 ]};
 
+/* ---------- Sprachniveaus (GER/CEFR) ---------- */
+const CEFR = {
+  a1:{ label:'A1', sub:'Einsteiger' },
+  a2:{ label:'A2', sub:'Grundlagen' },
+  b1:{ label:'B1', sub:'Mittelstufe' },
+  b2:{ label:'B2', sub:'Fortgeschritten' },
+  c1:{ label:'C1', sub:'Profi' },
+};
+const PACKS = {
+en:{
+a2:[
+  ['to bring','bringen'],['to think','denken'],['to know','wissen/kennen'],['to understand','verstehen'],
+  ['to wait','warten'],['to ask','fragen'],['to answer','antworten'],['to work','arbeiten'],
+  ['to live','wohnen/leben'],['to travel','reisen'],['to visit','besuchen'],['to meet','treffen'],
+  ['to wear','tragen'],['to pay','bezahlen'],['to cost','kosten'],['to forget','vergessen'],
+  ['cheap','billig/günstig'],['expensive','teuer'],['the money','das Geld'],['the shop','der Laden/das Geschäft'],
+  ['the town','die Stadt'],['the station','der Bahnhof'],['the train','der Zug'],['the plane','das Flugzeug'],
+  ['the weather','das Wetter'],['the rain','der Regen'],['the snow','der Schnee'],['the sun','die Sonne'],
+  ['ill/sick','krank'],['healthy','gesund'],['the doctor','der Arzt/die Ärztin'],['early','früh'],
+  ['late','spät'],['yesterday','gestern'],['tomorrow','morgen'],['maybe/perhaps','vielleicht'],
+  ['important','wichtig'],['the breakfast','das Frühstück'],
+],
+b1:[
+  ['to decide','entscheiden'],['to explain','erklären'],['to improve','verbessern'],['to allow','erlauben'],
+  ['to forbid','verbieten'],['to promise','versprechen'],['to complain','sich beschweren'],['to compare','vergleichen'],
+  ['to develop','entwickeln'],['to protect','schützen'],['to destroy','zerstören'],['to avoid','vermeiden'],
+  ['to reach','erreichen'],['the experience','die Erfahrung'],['the opinion','die Meinung'],['the environment','die Umwelt'],
+  ['the society','die Gesellschaft'],['the government','die Regierung'],['the advantage','der Vorteil'],
+  ['the disadvantage','der Nachteil'],['the solution','die Lösung'],['the reason','der Grund'],
+  ['the future','die Zukunft'],['the past','die Vergangenheit'],['the responsibility','die Verantwortung'],
+  ['proud','stolz'],['disappointed','enttäuscht'],['worried','besorgt'],['polite','höflich'],
+  ['rude','unhöflich'],['successful','erfolgreich'],['famous','berühmt'],['although','obwohl'],
+  ['however','jedoch/allerdings'],['at least','mindestens/zumindest'],['probably','wahrscheinlich'],
+],
+b2:[
+  ['to achieve','erreichen/schaffen'],['to affect','beeinflussen/betreffen'],['to apply for','sich bewerben um'],
+  ['to assume','annehmen/vermuten'],['to convince','überzeugen'],['to doubt','bezweifeln'],
+  ['to emphasize','betonen'],['to encourage','ermutigen'],['to estimate','schätzen'],['to judge','beurteilen'],
+  ['to prove','beweisen'],['to refuse','ablehnen/sich weigern'],['to require','erfordern/benötigen'],
+  ['the approach','der Ansatz'],['the attitude','die Einstellung/Haltung'],['the awareness','das Bewusstsein'],
+  ['the benefit','der Nutzen'],['the challenge','die Herausforderung'],['the consequence','die Folge/Konsequenz'],
+  ['the demand','die Nachfrage/Forderung'],['the effort','die Anstrengung/Mühe'],['the evidence','der Beweis/Beleg'],
+  ['the issue','das Thema/Problem'],['the purpose','der Zweck/die Absicht'],['the research','die Forschung'],
+  ['appropriate','angemessen/passend'],['aware','bewusst'],['confident','selbstbewusst/zuversichtlich'],
+  ['essential','wesentlich/unverzichtbar'],['obvious','offensichtlich'],['reasonable','vernünftig/angemessen'],
+  ['reliable','zuverlässig'],['sufficient','ausreichend'],['nevertheless','dennoch/trotzdem'],
+  ['whereas','während/wohingegen'],
+],
+c1:[
+  ['to acknowledge','anerkennen/zugeben'],['to advocate','befürworten/eintreten für'],['to allege','behaupten'],
+  ['to comprise','umfassen/bestehen aus'],['to constitute','darstellen/bilden'],['to deteriorate','sich verschlechtern'],
+  ['to diminish','verringern/abnehmen'],['to hinder','behindern/erschweren'],['to imply','andeuten/implizieren'],
+  ['to undermine','untergraben'],['to scrutinize','genau prüfen'],
+  ['the ambiguity','die Mehrdeutigkeit'],['the constraint','die Einschränkung/der Zwang'],
+  ['the discrepancy','die Diskrepanz/Abweichung'],['the incentive','der Anreiz'],['the notion','die Vorstellung/der Begriff'],
+  ['the outcome','das Ergebnis/Resultat'],['the scope','der Umfang/Spielraum'],['the threshold','die Schwelle/der Grenzwert'],
+  ['coherent','schlüssig/zusammenhängend'],['compelling','überzeugend/fesselnd'],['feasible','machbar/durchführbar'],
+  ['inevitable','unvermeidlich'],['intricate','kompliziert/verschachtelt'],['negligible','vernachlässigbar'],
+  ['profound','tiefgreifend'],['tentative','vorläufig/zögerlich'],['albeit','wenn auch/obgleich'],
+  ['notwithstanding','ungeachtet/trotz'],['thereby','dadurch'],
+]},
+fr:{
+a2:[
+  ['apporter','bringen'],['penser','denken'],['savoir','wissen'],['connaître','kennen'],
+  ['comprendre','verstehen'],['attendre','warten'],['demander','fragen'],['répondre','antworten'],
+  ['travailler','arbeiten'],['habiter','wohnen'],['voyager','reisen'],['visiter','besichtigen/besuchen'],
+  ['rencontrer','treffen'],['porter','tragen'],['payer','bezahlen'],['coûter','kosten'],
+  ['oublier','vergessen'],['pas cher/bon marché','billig'],['cher/chère','teuer'],['l\'argent','das Geld'],
+  ['le magasin','der Laden/das Geschäft'],['la ville','die Stadt'],['la gare','der Bahnhof'],['le train','der Zug'],
+  ['l\'avion','das Flugzeug'],['la pluie','der Regen'],['la neige','der Schnee'],['le soleil','die Sonne'],
+  ['malade','krank'],['en bonne santé','gesund'],['le médecin','der Arzt'],['tôt','früh'],
+  ['tard','spät'],['hier','gestern'],['demain','morgen'],['peut-être','vielleicht'],
+  ['important/importante','wichtig'],['le petit déjeuner','das Frühstück'],
+],
+b1:[
+  ['décider','entscheiden'],['expliquer','erklären'],['améliorer','verbessern'],['permettre','erlauben'],
+  ['interdire','verbieten'],['promettre','versprechen'],['se plaindre','sich beschweren'],['comparer','vergleichen'],
+  ['développer','entwickeln'],['protéger','schützen'],['détruire','zerstören'],['éviter','vermeiden'],
+  ['atteindre','erreichen'],['l\'expérience','die Erfahrung'],['l\'avis/l\'opinion','die Meinung'],
+  ['l\'environnement','die Umwelt'],['la société','die Gesellschaft'],['le gouvernement','die Regierung'],
+  ['l\'avantage','der Vorteil'],['l\'inconvénient','der Nachteil'],['la solution','die Lösung'],
+  ['la raison','der Grund'],['l\'avenir','die Zukunft'],['le passé','die Vergangenheit'],
+  ['la responsabilité','die Verantwortung'],['fier/fière','stolz'],['déçu/déçue','enttäuscht'],
+  ['inquiet/inquiète','besorgt'],['poli/polie','höflich'],['impoli/impolie','unhöflich'],
+  ['célèbre','berühmt'],['bien que','obwohl'],['cependant/pourtant','jedoch'],['probablement','wahrscheinlich'],
+],
+b2:[
+  ['convaincre','überzeugen'],['douter','zweifeln'],['souligner','betonen/unterstreichen'],['encourager','ermutigen'],
+  ['estimer','schätzen/einschätzen'],['juger','beurteilen'],['prouver','beweisen'],['refuser','ablehnen'],
+  ['exiger','fordern/verlangen'],['influencer','beeinflussen'],['postuler','sich bewerben'],['supposer','annehmen/vermuten'],
+  ['l\'approche','der Ansatz'],['l\'attitude','die Einstellung/Haltung'],['la conscience','das Bewusstsein/Gewissen'],
+  ['le bénéfice','der Nutzen/Gewinn'],['le défi','die Herausforderung'],['la conséquence','die Folge'],
+  ['la demande','die Nachfrage'],['l\'effort','die Anstrengung/Mühe'],['la preuve','der Beweis'],
+  ['le but','das Ziel/der Zweck'],['la recherche','die Forschung/Suche'],['approprié/appropriée','angemessen'],
+  ['conscient/consciente','bewusst'],['sûr de soi','selbstbewusst'],['essentiel/essentielle','wesentlich'],
+  ['évident/évidente','offensichtlich'],['raisonnable','vernünftig'],['fiable','zuverlässig'],
+  ['suffisant/suffisante','ausreichend'],['néanmoins','dennoch/trotzdem'],['tandis que','während/wohingegen'],
+],
+c1:[
+  ['reconnaître','anerkennen/zugeben'],['prôner','befürworten/propagieren'],['prétendre','behaupten'],
+  ['comporter','umfassen/beinhalten'],['constituer','darstellen/bilden'],['se détériorer','sich verschlechtern'],
+  ['diminuer','verringern/abnehmen'],['entraver','behindern'],['sous-entendre','andeuten'],['saper','untergraben'],
+  ['l\'ambiguïté','die Mehrdeutigkeit'],['la contrainte','die Einschränkung/der Zwang'],
+  ['l\'écart','die Abweichung/der Abstand'],['l\'incitation','der Anreiz'],['la notion','der Begriff/die Vorstellung'],
+  ['l\'issue','der Ausgang/das Ergebnis'],['l\'ampleur','das Ausmaß'],['le seuil','die Schwelle'],
+  ['cohérent/cohérente','schlüssig/stimmig'],['convaincant/convaincante','überzeugend'],['faisable','machbar'],
+  ['inévitable','unvermeidlich'],['négligeable','vernachlässigbar'],['profond/profonde','tiefgreifend/tief'],
+  ['provisoire','vorläufig'],['quoique','obgleich/wenngleich'],['néanmoins','nichtsdestotrotz'],
+  ['par conséquent','folglich/daher'],
+]},
+es:{
+a2:[
+  ['traer','bringen'],['pensar','denken'],['saber','wissen'],['conocer','kennen'],
+  ['entender/comprender','verstehen'],['esperar','warten/hoffen'],['preguntar','fragen'],['responder/contestar','antworten'],
+  ['trabajar','arbeiten'],['vivir','wohnen/leben'],['viajar','reisen'],['visitar','besuchen'],
+  ['encontrarse','sich treffen'],['llevar','tragen'],['pagar','bezahlen'],['costar','kosten'],
+  ['olvidar','vergessen'],['barato/barata','billig'],['caro/cara','teuer'],['el dinero','das Geld'],
+  ['la tienda','der Laden/das Geschäft'],['la ciudad','die Stadt'],['la estación','der Bahnhof'],['el tren','der Zug'],
+  ['el avión','das Flugzeug'],['la lluvia','der Regen'],['la nieve','der Schnee'],['el sol','die Sonne'],
+  ['enfermo/enferma','krank'],['sano/sana','gesund'],['el médico','der Arzt'],['temprano','früh'],
+  ['tarde','spät'],['ayer','gestern'],['mañana','morgen'],['quizás/tal vez','vielleicht'],
+  ['importante','wichtig'],['el desayuno','das Frühstück'],
+],
+b1:[
+  ['decidir','entscheiden'],['explicar','erklären'],['mejorar','verbessern'],['permitir','erlauben'],
+  ['prohibir','verbieten'],['prometer','versprechen'],['quejarse','sich beschweren'],['comparar','vergleichen'],
+  ['desarrollar','entwickeln'],['proteger','schützen'],['destruir','zerstören'],['evitar','vermeiden'],
+  ['alcanzar/lograr','erreichen'],['la experiencia','die Erfahrung'],['la opinión','die Meinung'],
+  ['el medio ambiente','die Umwelt'],['la sociedad','die Gesellschaft'],['el gobierno','die Regierung'],
+  ['la ventaja','der Vorteil'],['la desventaja','der Nachteil'],['la solución','die Lösung'],
+  ['la razón/el motivo','der Grund'],['el futuro','die Zukunft'],['el pasado','die Vergangenheit'],
+  ['la responsabilidad','die Verantwortung'],['orgulloso/orgullosa','stolz'],['decepcionado/decepcionada','enttäuscht'],
+  ['preocupado/preocupada','besorgt'],['educado/educada','höflich'],['maleducado/maleducada','unhöflich'],
+  ['famoso/famosa','berühmt'],['aunque','obwohl'],['sin embargo','jedoch/trotzdem'],['probablemente','wahrscheinlich'],
+],
+b2:[
+  ['lograr/conseguir','erreichen/schaffen'],['afectar/influir','beeinflussen'],['solicitar','sich bewerben/beantragen'],
+  ['suponer','annehmen/vermuten'],['convencer','überzeugen'],['dudar','bezweifeln'],
+  ['destacar/subrayar','betonen'],['animar','ermutigen'],['estimar/calcular','schätzen'],['juzgar','beurteilen'],
+  ['demostrar','beweisen'],['rechazar','ablehnen'],['exigir/requerir','erfordern/verlangen'],
+  ['el enfoque','der Ansatz'],['la actitud','die Einstellung/Haltung'],['la conciencia','das Bewusstsein/Gewissen'],
+  ['el beneficio','der Nutzen/Gewinn'],['el desafío/el reto','die Herausforderung'],['la consecuencia','die Folge'],
+  ['la demanda','die Nachfrage/Forderung'],['el esfuerzo','die Anstrengung/Mühe'],['la prueba','der Beweis/die Prüfung'],
+  ['el propósito','der Zweck/die Absicht'],['la investigación','die Forschung'],['adecuado/adecuada','angemessen/passend'],
+  ['consciente','bewusst'],['imprescindible','unverzichtbar'],['evidente/obvio','offensichtlich'],
+  ['razonable','vernünftig'],['fiable','zuverlässig'],['suficiente','ausreichend'],
+  ['no obstante','dennoch/gleichwohl'],['mientras que','während/wohingegen'],
+],
+c1:[
+  ['reconocer','anerkennen/zugeben'],['abogar por','sich einsetzen für/befürworten'],['alegar','behaupten/anführen'],
+  ['abarcar','umfassen'],['constituir','darstellen/bilden'],['deteriorarse','sich verschlechtern'],
+  ['disminuir','verringern/abnehmen'],['obstaculizar','behindern'],['insinuar','andeuten'],['socavar','untergraben'],
+  ['la ambigüedad','die Mehrdeutigkeit'],['la limitación','die Einschränkung'],['la discrepancia','die Diskrepanz'],
+  ['el incentivo','der Anreiz'],['la noción','der Begriff/die Vorstellung'],['el desenlace','der Ausgang/das Ergebnis'],
+  ['el alcance','der Umfang/die Reichweite'],['el umbral','die Schwelle'],['coherente','schlüssig/stimmig'],
+  ['convincente','überzeugend'],['factible/viable','machbar'],['inevitable','unvermeidlich'],
+  ['intrincado/intrincada','verwickelt/kompliziert'],['insignificante','vernachlässigbar/unbedeutend'],
+  ['profundo/profunda','tiefgreifend/tief'],['provisional','vorläufig'],['aunque/si bien','wenngleich/obgleich'],
+  ['por consiguiente','folglich/daher'],
+]}};
+// BUILTIN[lang] wird zu {a1:…, a2:…, b1:…, b2:…, c1:…} – A1 sind die Basislisten oben
+for(const k of Object.keys(BUILTIN)) BUILTIN[k] = Object.assign({ a1: BUILTIN[k] }, PACKS[k]);
+
 /* ---------- Zombie-Lehrer ---------- */
 const MONSTERS = {
   en:  { name:'Mr. Brainsworth', taunts:['Braaains … I mean: VOCABS!','Simple Past? YOU are past!','Mind the gap … in your skull!','Tea time is OVER. FOREVER.'] },
@@ -872,7 +1053,9 @@ const store = {
 let settings = Object.assign({ sound:true, strictAccents:false, difficulty:'normal', practice:false }, store.get('settings',{}));
 let customLists = store.get('lists', []);   // [{id,name,lang,words:[[fl,de],...]}]
 let highs = store.get('highs', {});         // key -> score
-// Migration: Rekorde der 2D-Version (Key "sprache:richtung") in den Normal-Modus übernehmen
+// Migration: alte Rekord-Keys in das aktuelle Schema überführen
+// v1 (2D): "sprache:richtung"  ->  + ":normal"
+// v2 (3D ohne Niveaus): "en|fr|es:richtung:schwierigkeit"  ->  Niveau "a1" einfügen
 (function(){
   let migrated = false;
   for(const k of Object.keys(highs)){
@@ -883,15 +1066,25 @@ let highs = store.get('highs', {});         // key -> score
       migrated = true;
     }
   }
+  for(const k of Object.keys(highs)){
+    const seg = k.split(':');
+    if(seg.length === 3 && (seg[0]==='en'||seg[0]==='fr'||seg[0]==='es')){
+      const nk = seg[0]+':a1:'+seg[1]+':'+seg[2];
+      if(!(highs[nk] >= highs[k])) highs[nk] = highs[k];
+      delete highs[k];
+      migrated = true;
+    }
+  }
   if(migrated) store.set('highs', highs);
 })();
-let stats = Object.assign({ games:0, kills:0, correct:0, wrong:0, hints:0 }, store.get('stats',{}));
+let stats = Object.assign({ games:0, kills:0, correct:0, wrong:0, hints:0, bestWave:0, timeMs:0 }, store.get('stats',{}));
 let fails = store.get('fails', {});         // "fl|de" -> Anzahl verfehlt (für gewichtete Wiederholung)
+let learned = store.get('learned', {});     // "fl|de" -> Anzahl richtig (ab 3× gilt sie als gelernt)
 let xp = store.get('xp', 0);
 let streak = Object.assign({ last:'', days:0 }, store.get('streak',{}));
 function saveLists(){ store.set('lists', customLists); pruneFails(); }
 function saveSettings(){ store.set('settings', settings); }
-function saveProgress(){ store.set('stats',stats); store.set('fails',fails); store.set('xp',xp); store.set('streak',streak); }
+function saveProgress(){ store.set('stats',stats); store.set('fails',fails); store.set('learned',learned); store.set('xp',xp); store.set('streak',streak); }
 
 /* Klassenstufen: Level = "Klasse", steigt mit XP */
 function levelFor(x){ return Math.min(13, Math.floor(Math.sqrt(x/150)) + 1); }
@@ -907,14 +1100,15 @@ function bumpStreak(){
   streak.last = t;
 }
 const failKey = (fl,de) => fl+'|'+de;
-// Verwaiste "Angstgegner"-Einträge entfernen (Vokabel wurde umbenannt oder Liste gelöscht)
+// Verwaiste Einträge entfernen (Vokabel wurde umbenannt oder Liste gelöscht)
 function pruneFails(){
   const valid = new Set();
-  for(const ws of Object.values(BUILTIN)) for(const [fl,de] of ws) valid.add(failKey(fl,de));
+  for(const pack of Object.values(BUILTIN)) for(const ws of Object.values(pack)) for(const [fl,de] of ws) valid.add(failKey(fl,de));
   for(const l of customLists) for(const [fl,de] of l.words) valid.add(failKey(fl,de));
   let changed = false;
   for(const k of Object.keys(fails)) if(!valid.has(k)){ delete fails[k]; changed = true; }
-  if(changed) store.set('fails', fails);
+  for(const k of Object.keys(learned)) if(!valid.has(k)){ delete learned[k]; changed = true; }
+  if(changed){ store.set('fails', fails); store.set('learned', learned); }
 }
 
 const DIFFS = {
@@ -1457,6 +1651,24 @@ const S3 = (() => {
     renderer.render(scene, camera);
   }
 
+  /* ---------- Viewport (schrumpft, wenn die Bildschirmtastatur offen ist) ---------- */
+  let VW = innerWidth, VH = innerHeight, VT = 0, kbMode = false;
+  function applyViewport(){
+    if(!ok) return;
+    camera.aspect = VW/VH;
+    camera.updateProjectionMatrix();
+    renderer.setSize(VW, VH);
+    renderer.domElement.style.top = VT + 'px';
+  }
+  function setViewport(w, h, top){
+    kbMode = true; VW = w; VH = h; VT = top||0;
+    applyViewport();
+  }
+  function clearViewport(){
+    kbMode = false; VW = innerWidth; VH = innerHeight; VT = 0;
+    applyViewport();
+  }
+
   /* ---------- Projektion für DOM-Overlays ---------- */
   const _v = new THREE.Vector3();
   function zombieScreenPos(headOffset){
@@ -1464,14 +1676,13 @@ const S3 = (() => {
     _v.set(zombie.root.position.x, (headOffset!==undefined?headOffset:2.05)*(zombie.boss?1.32:1), zombie.curZ);
     _v.project(camera);
     if(_v.z > 1) return null;
-    return { x:(_v.x*.5+.5)*innerWidth, y:(-_v.y*.5+.5)*innerHeight };
+    return { x:(_v.x*.5+.5)*VW, y:(-_v.y*.5+.5)*VH + VT };
   }
 
   function resize(){
-    if(!ok) return;
-    camera.aspect = innerWidth/innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(innerWidth, innerHeight);
+    if(kbMode) return;   // Tastatur offen: Viewport steuert part7/fit()
+    VW = innerWidth; VH = innerHeight; VT = 0;
+    applyViewport();
   }
 
   function init(canvas){
@@ -1522,7 +1733,7 @@ const S3 = (() => {
   }
 
   return {
-    init, resize,
+    init, resize, setViewport, clearViewport,
     setIdle(v){ idle = v; for(const z of idlers) z.root.visible = v; },
     setOnFrame(fn){ onFrameHook = fn; },
     spawnZombie, removeZombie, setZombieProgress, hurtFlash, killZombie, attackLunge,
@@ -1548,15 +1759,21 @@ function showModal(id,on=true){ $(id).classList.toggle('show',on); }
    ========================================================= */
 let selLang = store.get('lastLang','en');
 let selDir  = store.get('lastDir','mix');
+let selLevel = store.get('lastLevel','a1');
+if(!CEFR[selLevel]) selLevel = 'a1';
 
 function poolFor(sel){
-  if(BUILTIN[sel]) return { words:BUILTIN[sel], lang:sel, label:LANGS[sel].name, kind:sel };
+  if(BUILTIN[sel]) return { words: BUILTIN[sel][selLevel] || BUILTIN[sel].a1, lang:sel, label:LANGS[sel].name+' '+CEFR[selLevel].label, kind:sel };
   const l = customLists.find(x=>x.id===sel);
   // halbleere Paare (z. B. beim Editieren geleert) sind nicht spielbar
   if(l) return { words:l.words.filter(p=>String(p[0]).trim()&&String(p[1]).trim()), lang:l.lang, label:l.name, kind: BUILTIN[l.lang]? l.lang : 'own', custom:true };
   return null;
 }
-function hiKey(){ return selLang + ':' + selDir + ':' + settings.difficulty; }
+function hiKey(){
+  return BUILTIN[selLang]
+    ? selLang + ':' + selLevel + ':' + selDir + ':' + settings.difficulty
+    : selLang + ':' + selDir + ':' + settings.difficulty;
+}
 
 function renderLangGrid(){
   const g = $('lang-grid'); g.innerHTML='';
@@ -1583,6 +1800,21 @@ function renderLangGrid(){
   add.onclick = openLists;
   g.appendChild(add);
   if(!poolFor(selLang)){ selLang='en'; renderLangGrid(); }
+  renderLevelRow();
+}
+function renderLevelRow(){
+  const row = $('level-row');
+  if(!BUILTIN[selLang]){ row.style.display='none'; return; }   // eigene Listen haben kein Niveau
+  row.style.display='';
+  row.innerHTML='';
+  for(const [k,v] of Object.entries(CEFR)){
+    const b = document.createElement('button');
+    b.className = 'choice'+(selLevel===k?' sel':'');
+    const n = (BUILTIN[selLang][k]||[]).length;
+    b.innerHTML = `<span class="flag">${v.label}</span><span class="name">${v.sub}<br><small>${n} Vokabeln</small></span>`;
+    b.onclick = ()=>{ selLevel=k; store.set('lastLevel',k); renderLevelRow(); renderHi(); };
+    row.appendChild(b);
+  }
 }
 function renderDir(){
   document.querySelectorAll('#dir-grid .choice').forEach(b=>{
@@ -1598,7 +1830,9 @@ function renderDiff(){
 }
 function renderHi(){
   const h = highs[hiKey()];
-  $('hi-line').innerHTML = h ? `🏆 Rekord (${DIFFS[settings.difficulty].label}): <b>${h}</b> Punkte` : 'Noch kein Rekord – zeig\'s den Zombies!';
+  const p = poolFor(selLang);
+  const where = (p ? p.label : '') + ' · ' + DIFFS[settings.difficulty].label;
+  $('hi-line').innerHTML = h ? `🏆 Rekord (${esc(where)}): <b>${h}</b> Punkte` : 'Noch kein Rekord – zeig\'s den Zombies!';
 }
 function renderLevel(){
   const lvl = levelFor(xp);
@@ -1630,6 +1864,7 @@ function startGame(){
   Object.assign(G,{ running:true,paused:false,locked:false,pool,deck:[],wave:0,inWave:0,lives:3,score:0,combo:0,
     bestCombo:0,kills:0,misses:[],hintUsed:0,cur:null,boss:false, practice: !!settings.practice });
   G.gen = (G.gen||0) + 1;   // entwertet alle noch laufenden Timeouts eines früheren Spiels
+  G.startedAt = Date.now();
   stats.games++; saveProgress();
   renderHearts(); updateScore();
   const wb = $('wavebadge');
@@ -1713,10 +1948,16 @@ function newQuestion(){
   G.curDir = selDir==='mix' ? (Math.random()<.5?'de2fl':'fl2de') : selDir;
   G.hintUsed = 0;
   const [fl,de] = G.cur;
-  const q = G.curDir==='de2fl' ? de : fl;
   const langName = (LANGS[G.pool.lang]||{name:'Fremdsprache'}).name;
-  $('ask-lang').textContent = G.curDir==='de2fl' ? ('Gesucht: '+langName.toUpperCase()) : 'GESUCHT: DEUTSCH';
-  $('prompt').innerHTML = `<span class="dirflag">${G.curDir==='de2fl'?'🇩🇪':(LANGS[G.pool.lang]||{}).flag||'🌍'}</span>${esc(q)}`;
+  if(G.curDir==='copy'){
+    // Abschreib-Modus: Vokabel + Bedeutung stehen da, schnell abtippen
+    $('ask-lang').textContent = '📝 ABSCHREIBEN & EINPRÄGEN';
+    $('prompt').innerHTML = `${esc(fl)}<small style="display:block;font-size:.55em;color:#3c76c2;font-weight:800">= ${esc(de)}</small>`;
+  } else {
+    const q = G.curDir==='de2fl' ? de : fl;
+    $('ask-lang').textContent = G.curDir==='de2fl' ? ('Gesucht: '+langName.toUpperCase()) : 'GESUCHT: DEUTSCH';
+    $('prompt').innerHTML = `<span class="dirflag">${G.curDir==='de2fl'?'🇩🇪':(LANGS[G.pool.lang]||{}).flag||'🌍'}</span>${esc(q)}`;
+  }
   $('task-count').textContent = G.boss ? `Boss ${G.maxHp-G.hp+1} / ${G.maxHp}` : `Zombie ${G.inWave} / ${G.waveSize}`;
   const diffMul = DIFFS[settings.difficulty].time * (G.practice ? 2.6 : 1);
   G.timeLimit = (Math.max(9500 - G.wave*600, 3500) + (G.boss?1500:0)) * diffMul;
@@ -1726,7 +1967,7 @@ function newQuestion(){
   if(!G.paused) inp.focus({preventScroll:true});
 }
 
-function solutionNow(){ const [fl,de]=G.cur; return G.curDir==='de2fl' ? fl : de; }
+function solutionNow(){ const [fl,de]=G.cur; return G.curDir==='fl2de' ? de : fl; }
 
 /* Wird jeden Frame von der 3D-Schleife aufgerufen */
 function gameUpdate(dt){
@@ -1782,7 +2023,7 @@ function monsterAttacks(){
   $('dmg').classList.add('show');
   setTimeout(()=>$('dmg').classList.remove('show'), 320);
   zap('AUTSCH!', $('stage').clientWidth*.5, $('stage').clientHeight*.6, true);
-  G.misses.push([G.curDir==='de2fl' ? G.cur[1] : G.cur[0], solutionNow()]);
+  G.misses.push([(G.curDir==='de2fl'||G.curDir==='copy') ? G.cur[1] : G.cur[0], solutionNow()]);
   const fk = failKey(G.cur[0], G.cur[1]);
   fails[fk] = Math.min((fails[fk]||0)+1, 6);
   stats.wrong++;
@@ -1841,18 +2082,21 @@ function submitAnswer(){
 
 function correct(){
   G.locked = true;
+  G.curDirWas = G.curDir;
   const inp=$('answer');
   inp.classList.remove('bad'); inp.classList.add('good');
   stats.correct++;
   const fk = failKey(G.cur[0], G.cur[1]);
   if(fails[fk]){ fails[fk]--; if(!fails[fk]) delete fails[fk]; }
+  learned[fk] = Math.min((learned[fk]||0)+1, 99);
   S3.shootChalk(()=>{
     G.hp--;
     const timeFrac = Math.max(G.timeLeft/G.timeLimit,0);
     const speedBonus = Math.round(timeFrac*50);
     G.combo++; G.bestCombo=Math.max(G.bestCombo,G.combo);
     const comboMult = 1 + Math.min(G.combo-1,8)*.25;
-    const pts = Math.round((100+speedBonus) * comboMult * (G.boss?1.5:1) * DIFFS[settings.difficulty].score);
+    const modeMult = G.curDirWas==='copy' ? .6 : 1;   // Abschreiben ist leichter
+    const pts = Math.round((100+speedBonus) * comboMult * (G.boss?1.5:1) * DIFFS[settings.difficulty].score * modeMult);
     G.score += pts; updateScore(); updateCombo();
     const zp = S3.zombieScreenPos(1.6);
     const sp = zp ? stageXY(zp) : { x:$('stage').clientWidth*.5, y:$('stage').clientHeight*.4 };
@@ -1935,6 +2179,9 @@ function gameOver(won){
   if(G.score>0) gained = Math.max(gained, 5);
   xp += gained;
   bumpStreak();
+  stats.bestWave = Math.max(stats.bestWave||0, G.wave);
+  if(G.startedAt) stats.timeMs = (stats.timeMs||0) + Math.max(0, Date.now()-G.startedAt);
+  G.startedAt = 0;
   saveProgress();
   $('over-title').textContent = won ? 'SCHULE GERETTET!' : 'ERWISCHT!';
   $('over-title').classList.toggle('win',won);
@@ -2149,12 +2396,20 @@ async function runOCR(file){
 }
 
 /* ---------- Statistik ---------- */
+function fmtTime(ms){
+  const m = Math.floor(ms/60000);
+  if(m < 60) return m + ' min';
+  return Math.floor(m/60) + ' h ' + (m%60) + ' min';
+}
 function openStats(){
   const total = stats.correct + stats.wrong;
   const acc = total ? Math.round(100*stats.correct/total) : 0;
+  const learnedCount = Object.values(learned).filter(n=>n>=3).length;
   $('stats-grid').innerHTML = [
     [stats.games,'Spiele'], [stats.kills,'Besiegte Zombies'], [acc+'%','Trefferquote'],
     [stats.correct,'Richtig'], [stats.wrong,'Falsch/Verpasst'], [stats.hints,'Tipps benutzt'],
+    [stats.bestWave||0,'Beste Welle'], [fmtTime(stats.timeMs||0),'Spielzeit'],
+    [learnedCount,'Gelernt (3× richtig)'],
     [xp+' XP', levelLabel(levelFor(xp))], [(streak.days||0)+' 🔥','Tage-Serie'],
   ].map(([v,l])=>`<div class="statcell"><b>${esc(String(v))}</b><span>${esc(l)}</span></div>`).join('');
   const worst = Object.entries(fails).sort((a,b)=>b[1]-a[1]).slice(0,8);
@@ -2174,8 +2429,8 @@ function wire(){
   $('btn-stats').onclick=openStats;
   $('btn-stats-close').onclick=()=>showModal('statsmodal',false);
   $('btn-stats-reset').onclick=()=>{
-    if(confirm('Statistik, XP, Tage-Serie und Angstgegner wirklich zurücksetzen? (Listen + Rekorde bleiben)')){
-      stats={games:0,kills:0,correct:0,wrong:0,hints:0}; fails={}; xp=0; streak={last:'',days:0};
+    if(confirm('Statistik, XP, Tage-Serie, Gelernt-Zähler und Angstgegner wirklich zurücksetzen? (Listen + Rekorde bleiben)')){
+      stats={games:0,kills:0,correct:0,wrong:0,hints:0,bestWave:0,timeMs:0}; fails={}; learned={}; xp=0; streak={last:'',days:0};
       saveProgress(); renderLevel(); openStats();
     }
   };
@@ -2190,6 +2445,10 @@ function wire(){
   $('btn-fire').onclick=submitAnswer;
   $('answer').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); submitAnswer(); } else Sound.type(); });
   $('btn-hint').onclick=useHint;
+  // Tastatur bleibt offen: Buttons dürfen dem Eingabefeld nicht den Fokus klauen
+  for(const id of ['btn-fire','btn-hint']){
+    $(id).addEventListener('pointerdown', e=>e.preventDefault());
+  }
   $('btn-pause').onclick=()=>pauseGame(true);
   $('btn-resume').onclick=()=>pauseGame(false);
   $('btn-quit').onclick=()=>{
@@ -2271,14 +2530,18 @@ function init(){
   }
   S3.setOnFrame(gameUpdate);
   pruneFails();
-  // Bildschirmtastatur: Spiel-Screen an den sichtbaren Viewport heften
+  // Bildschirmtastatur: Spiel-Screen UND 3D-Ansicht an den sichtbaren Viewport heften,
+  // damit nichts hinter der Tastatur verschwindet; Kompakt-Layout via body.kb
   if('visualViewport' in window){
     const vv = visualViewport;
     const fit = ()=>{
       const g = $('screen-game');
       const kb = innerHeight - vv.height > 80;
+      document.body.classList.toggle('kb', kb);
       g.style.top = kb ? vv.offsetTop+'px' : '';
       g.style.height = kb ? vv.height+'px' : '';
+      if(kb) S3.setViewport(Math.round(vv.width), Math.round(vv.height), Math.round(vv.offsetTop));
+      else S3.clearViewport();
     };
     vv.addEventListener('resize', fit);
     vv.addEventListener('scroll', fit);
